@@ -1,4 +1,4 @@
-# CosFace: Large Margin Cosine Loss for Deep Face Recognition
+# ArcFace: Additive Angular Margin Loss for Deep Face Recognition
 Jiankang Deng, Jia Guo, Niannan Xue, Stefanos Zafeiriou. _9 Feb 2019_
 
 Recently, a popular line of research is to incorporate margins in well-established loss functions in order to maximise face class separability. In this paper, we propose an Additive Angular Margin Loss (ArcFace) to obtain highly discriminative features for face recognition. The proposed ArcFace has a clear geometric interpretation due to the exact correspondence to the geodesic distance on the hypersphere. 
