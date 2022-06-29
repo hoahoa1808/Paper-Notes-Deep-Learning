@@ -40,7 +40,7 @@ Norm softmax loss boundary
 Consequently, the trained classifier with the SL/NSL
 is unable to perfectly classify testing samples in the cosine space and not quite robust to noise
 
-![image](../../../asset/images/Cosface/2dfeature.png)
+![image](../../../asset/images/Cosface/2dfeature.png#left)
 
 ## II. Large Margin Cosine Loss (CosFace)
 - To address problem of SM in cosine space, CosFace purposed adding a margin penalty into SM as:
@@ -53,9 +53,10 @@ $$\cos(\theta_j, i) = W_j^T x_i $$
 - Cosface defines a decision margin in cosine space. For example, to decide x belong to 2 class 1-th or 2-th:
   $$C_1  :  \cos(\theta_1) \ge \cos(\theta_2) + m$$
   $$C_2  :  \cos(\theta_2) \ge \cos(\theta_1) + m$$
-Therefore $\cos(\theta_1)$ is maximized while $\cos(\theta_2)$ being minimized for C_1 to perfrom the large-margin classification
+Therefore $\cos(\theta_1)$ is maximized \
+while $\cos(\theta_2)$ being minimized for C_1 to perfrom the large-margin classification
 
-![image](../../../asset/images/Cosface/geometrical.png)
+![image2](../../../asset/images/Cosface/geometrical.png#center)
 
 
 ## III. Hyperparameter tuning
