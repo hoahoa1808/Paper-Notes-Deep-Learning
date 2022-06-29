@@ -8,7 +8,7 @@ Clustering-based unsupervised domain adaptive (UDA) person re-identification (Re
 
 ## Overview
 Paper contain the following criterions:
-1. Architecture of UDA
+1. Architecture of UDA 
 2. Mean Teacher
 3. Probabilistic Uncertainty Modeling (PUM)
 4. Uncertainty guided sample selection
@@ -22,8 +22,8 @@ P2LR is the clustering-based method contructed by 3 components:
 3. Fine-tuning with target domain attached pseudo labels. To Continue training two model and update mean teacher on Refined Samples.
 
 ## II. Mean Teacher
-*  Inspired in [MMT](https://github.com/yxgeee/MMT), Mean Teacher is composed two the exponential moving average of student models (pretrain model) over interations -  $\overline{M_{i}}$.
-MT Inference is computed: 
+*  Inspired in [MMT](https://github.com/yxgeee/MMT), Mean Teacher is composed two the exponential moving average of student models (pretrain model) over interations -  $\overline{M_{i}}$
+Mean Teacher's Inference is computed like: 
 ```python
     p_out_ema = (p_out_t1_ema+p_out_t2_ema)/2
     f_out_ema = (f_out_t1_ema+f_out_t2_ema)/2

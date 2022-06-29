@@ -2,6 +2,11 @@
 
 ## Face Recognition
 
+1. SOTA
+   - <kbd>2018 - 3 April</kbd><kbd>CVPR</kbd>[CosFace: Large Margin Cosine Loss for Deep Face Recognition](2.Face%20Recogntion/SOTA/CosFace.md)
+2. Architectures
+
+
 ## Person ReID
 
 1. Supervised Learning
