@@ -43,7 +43,7 @@ Mean Teacher's Inference is computed like:
 ## III. Probabilistic Uncertainty Modeling
 > Inspired by this observation, we leverage the distribution difference as the probabilistic uncertainty to softly evaluate the noisy level of samples.
 
-1. Each unlabeled sample $x_{i}$ in the target domain is assigned with a pseudo label $y^i$ by clustering. Then we distribution for samples in target domain: 
+1. Each unlabeled sample $x_{i}$ in the target domain is assigned with a pseudo label $y^i$ by **clustering algorithms**. Then we distribution for samples in target domain: 
    $Q(x_{i}, \overline{y_{i}})$ 
 
 2. Mean teacher have the external classifier for predict cluster of $x_{i}$, called $P(x_{i})$
