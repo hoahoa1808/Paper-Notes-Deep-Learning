@@ -14,5 +14,5 @@
 
 1. Supervised Learning
 2. Unsupervised Learning
-   - <kbd>2022 - 19 May</kbd><kbd>ICPR</kbd> [Learning Feature Fusion for Unsupervised Domain Adaptive Person Re-identification](3.Person%20ReID/FL2.md) ($LF^2$)
+   - <kbd>2022 - 19 May</kbd><kbd>ICPR</kbd> [Learning Feature Fusion for Unsupervised Domain Adaptive Person Re-identification](3.Person%20ReID/LF2.md) ($LF^2$)
    - <kbd>2022 - 28 Apr</kbd><kbd>AAAI</kbd> [Delving into Probabilistic Uncertainty for Unsupervised Domain Adaptive Person Re-identification](3.Person%20ReID/P2LR.md) ($P^{2}LR$)
