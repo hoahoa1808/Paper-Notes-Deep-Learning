@@ -3,9 +3,9 @@
 ## Face Recognition
 
 1. SOTA
-   - <kbd>2021 - 13 Nov </kbd><kbd>CVPR</kbd> [MagFace: A Universal Representation for Face Recognition and Quality Assessment](2.Face%20Recogntion/SOTA/MagFace.md)
-   - <kbd>2019 - 9 Feb  </kbd><kbd>CVPR</kbd> [ArcFace: Additive Angular Margin Loss for Deep Face Recognition](2.Face%20Recogntion/SOTA/ArcFace.md)
-   - <kbd>2018 - 3 April</kbd><kbd>CVPR</kbd> [CosFace: Large Margin Cosine Loss for Deep Face Recognition](2.Face%20Recogntion/SOTA/CosFace.md)
+   - <kbd>2021 - 13 Nov</kbd><kbd>CVPR</kbd> [MagFace: A Universal Representation for Face Recognition and Quality Assessment](2.Face%20Recogntion/SOTA/MagFace.md)
+   - <kbd>2019 - 09 Feb</kbd><kbd>CVPR</kbd> [ArcFace: Additive Angular Margin Loss for Deep Face Recognition](2.Face%20Recogntion/SOTA/ArcFace.md)
+   - <kbd>2018 - 03 Apr</kbd><kbd>CVPR</kbd> [CosFace: Large Margin Cosine Loss for Deep Face Recognition](2.Face%20Recogntion/SOTA/CosFace.md)
   
 2. Architectures
 

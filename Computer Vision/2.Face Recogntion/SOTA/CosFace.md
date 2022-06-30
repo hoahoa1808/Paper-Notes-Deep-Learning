@@ -48,7 +48,7 @@ is unable to perfectly classify testing samples in the cosine space and not quit
 subject to 
 $$W = \frac{W^\*}{||W^\*||}$$
 $$x = \frac{x^\*}{||x^\*||}$$
-$$\cos(\theta_j, i) = W_j^T x_i $$
+$$\cos(\theta_{j,i}) = W_j^T x_i $$
 
 - Cosface defines a decision margin in cosine space. For example, to decide x belong to 2 class 1-th or 2-th:
   $$C_1  :  \cos(\theta_1) \ge \cos(\theta_2) + m$$

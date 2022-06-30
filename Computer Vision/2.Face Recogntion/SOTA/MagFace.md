@@ -34,7 +34,7 @@ area in Fig. 2a) without any penalization by the angular margin. This leads to u
 subject to 
 $$W = \frac{W^\*}{||W^\*||}$$
 $$x = \frac{x^\*}{||x^\*||}$$
-$$\cos(\theta_j, i) = W_j^T x_i $$
+$$\theta_{j, i} = \arccos(W_j^T x_i) $$
 and where:
   -   $a_i  =  ||f_i||$ without normalization $f_i$ and is attributed in range [$l_a, u_a$].
   -   $g(a_i)$ is the regularizer and is a strictly decreasing convex function
@@ -58,11 +58,11 @@ and where:
 
 ## III. Requirements for MagFace (Hyperparameter)
 - In MagFace, $m(a_i),  g(a_i),  \lambda_g$ are required to have the following properties:
-    1.  $m(a_i)$ is an increasing convex function in $[l_a, u_a] \& m^{\'}(a_i) \in (0, K]$, where K is a upper bound
+    1.  $m(a_i)$ is an increasing convex function in $[l_a, u_a]$ and $m^{\'}(a_i) \in (0, K]$, where K is a upper bound
     2.  $g(a_i)$  is a strictly convex function with $g^{\'}(u_a)=0$
     3.  $\lambda_g  \ge  \frac{sK}{-g^{\'}(l_a)}$
 - In paper, they set:
     - $m(a_i) = \frac{u_m-l_m}{u_a-l_a} (a_i - l_a) + l_m$
     - $g_(a_i) = \frac{1}{a_i} + \frac{1}{u_a^2} a_i$
-    - on MSMT2 dataset, with ($\lamda_g, l_a, u_a$) fixed to (35, 10, 110),
+    - on MSMT2 dataset, with ($\lambda_g, l_a, u_a$) fixed to (35, 10, 110),
 ($l_m, u_m$) need selecting carefully, and they chosen (0.4, 0.8). If using other DS, we need tuning these hyperparameters.

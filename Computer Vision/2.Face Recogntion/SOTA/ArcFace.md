@@ -22,7 +22,7 @@ Arcface purposed new additive margin penalty softmax, so that you could read [Co
 subject to 
 $$W = \frac{W^\*}{||W^\*||}$$
 $$x = \frac{x^\*}{||x^\*||}$$
-$$\cos(\theta_j, i) = W_j^T x_i $$
+$$\cos(\theta_{j, i}) = W_j^T x_i $$
 
 - Similinaly Cosface, Arcface defines a decision margin in cosine space. For example, to decide x belong to 2 class 1-th or 2-th:
   $$C_1  :  \cos(\theta_1 + m) \ge \cos(\theta_2)$$
