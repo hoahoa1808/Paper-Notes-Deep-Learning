@@ -46,20 +46,21 @@ There are 2 stages:
   - use the cluster assignment as pseudo-labels => $(x_i, y_i)_{i=1}^N | y_i \in R^K$ where K is the number of clusters.
 - step 3: Compute loss funtion:
   - global cross-entropy loss: $L_{gce} = - \sum_{i=1}^N y_i . log(q_i^g)$
-    where $q_i^g = h_{\phi_g}(f_i^g) \in R^K$ is the prediction vector by global feature, and _h_ is the global feature classifier.
-  - local(part) cross entropy: $L_{pce} = - \frac{1}{N_p} \sum_{i=1}^N \sum_{n=1}^N_p y_i . log(q_i^{p_n})$
+  
+  where $q_i^g = h_{\phi_g}(f_i^g) \in R^K$ is the prediction vector by global feature, and _h_ is the global feature classifier.
+  - local(part) cross entropy: $L_{pce} = - \frac{1}{N_p} \sum_{i=1}^N \sum_{n=1}^{N_p} y_i . log(q_i^{p_n})$
     where $q_i^{p_n} = h_{\phi_g}(f_i^{p_n}) \in R^K$ is the prediction vector by _n_-th part feature space $p_n$, and _h_ is the classifier for the part feature space. 
   - softmax-triplet loss:
-  $$L_{softTriplet =  - \sum_{i=1}^{N} log (\frac{e^{||f_i^g - f_{i,n}^g||}}{e^{||f_i^g - f_{i,p}^g||} + e^{||f_i^g - f_{i,n}^g||}}) $$
+  $$L_{softTriplet =  - \sum_{i=1}^{N} log (\frac{e^{||f_i^g - f_{i,n}^g||}}{e^{||f_i^g - f_{i,p}^g||} + e^{||f_i^g - f_{i,n}^g||}})$$
   where ||.|| denotes the L2-norm, the subcripts _(i,p)_ and _(i,n)_ respectively the hardest positive and negative samples of the image $x_i$ in mini-batch.
   - *Optional loss*: camera-aware proxy to improve the discriminability across camera views. This loss attemp _pull_ together the proxies are within the same cluster but in different cameras, _reduce_ the intra-class variance caused by disjoint camera views.
     - compute the camrera-aware proxy $c_{a,b}$ as the cenntroid of the features that have _same camera label_ **a** and _same cluter(plabel)_ **b**
 
     $$c_{(a,b)} = \frac{1}{|S_{a,b}|} \sum_{i \in S_{a,b}} f_i$$
-    where $S_{a,b} = {i|c_i = a \cup y_i = b}$ is the index set for the proxy $c_{(a,b)}$
+    where $S_{a,b} = {i|c_i = a \cat y_i = b}$ is the index set for the proxy $c_{(a,b)}$
 
     - with $P_i, Q_i$ are the index sets of the positive and hard negative camera-aware proxies for $f_i^g$, the inter-camera contrastive loss as:
-    $$L_{cam} = - \sum_{i=1}^N \frac{1}{|P_i|} \sum_{j \in P_i} log \frac{exp(c_j^\tau f_i^g / \tau)}{\sum_{k \in P_i \cup Q_i} exp(c_k^\tau f_^g / \tau)}$$ 
+    $$L_{cam} = - \sum_{i=1}^N \frac{1}{|P_i|} \sum_{j \in P_i} log \frac{exp(c_j^{\tau} f_i^g / \tau)}{\sum_{k \in P_i \cup Q_i} exp(c_k^{\tau} f_^g / \tau)}$$ 
 
       - $P_i$ defined as the proxy indices that have the same pseudo-label but differnet camera labels with $f_i$
       - $Q_i$ for the hard negative proxies of the feature $f_i$ is defined as the indices of nearest proxies that have different pseudo-labels to $y_i$
@@ -73,7 +74,9 @@ There are 2 stages:
 
   - the cross agreement score is defined as the Jaccard similarity between the knearest neighbors of the global and part features.
 
-  ![fig2](../../asset/images/PPLR/fig2.png)
+  ![fig2](../../asset/images/PPLR/fig2.png#center)
+
+
 **STEPS**
   - to perform a KNN search on the gobal and each local feature spaces independently to produce $(1+N_p)$ ranked lists on each image.
   - Compute the cross agreement score between the global feature space _g_ and the _n_-th parth feature space $p_n$ for each _i_-th image by:
@@ -94,7 +97,7 @@ Based on the cross agreement scores, we alleviate the pseudo label noise by cons
   where _u_ is a uniform vector (zeros vector), and $\alpha_i^{p_n}$ is a weight determing the strength of label smoothing and dynamically adjuted for each part(local) features using the cross agreement score.
 
   - $L_{pce}$ in final objective is reformulated with Kullback leiler divergence by:
-      $$L_{aals} = \frac{1}{N_p} \sum_{i=1}^N \sum_{n=1}^N_p (\alpha_i^{p_n} H(y_i, q_i^p_n)) + (1-\alpha_i^{p_n}) D_{KL}(u || q_i^p_n)$$
+      $$L_{aals} = \frac{1}{N_p} \sum_{i=1}^N \sum_{n=1}^{N_p} (\alpha_i^{p_n} H(y_i, q_i^{p_n})) + (1-\alpha_i^{p_n}) D_{KL}(u || q_i^{p_n})$$
   with **H(.,.)** and **D(.||.)** are cross-entropy and KL divergence.
 
   - code example:
@@ -118,18 +121,43 @@ Based on the cross agreement scores, we alleviate the pseudo label noise by cons
 > Since less discriminative parts can provide misleading information, we aggregate the predictions of part features with different weights depending on each cross agreement score, thus refining the labels with more reliable information.
 
   - The label smoothing for the global feature $f_i^{p_n}$ are formulated as:
-  $$\overline{y_i^g} = \beta y_i + (1-\beta) \sum_{n=1}^N_p w_i^p_n q_i^p_n$$
+  $$\overline{y_i^g} = \beta y_i + (1-\beta) \sum_{n=1}^{N_p} w_i^{p_n} q_i^{p_n}$$
   
   subject to
-  $$w_i^p_n = \frac{exp(C_i(g, p_n))}{\sum_k exp(C_i(g,p_k))}$$
-  where _w_ and _q_ are the ensemble weight and the prediction vector of the part feature $f_i^p_n$, respectively.
+  $$w_i^{p_n} = \frac{exp(C_i(g, p_n))}{\sum_k exp(C_i(g,p_k))}$$
+  where _w_ and _q_ are the ensemble weight and the prediction vector of the part feature $f_i^{p_n}$, respectively.
   - Then, the refined labels $\overline{y_i^g}$ are plugged the $L_{gce}$ by:
-    $$$L_{pglr} = - \sum_{i=1}^N \overline{y_i^g} . log(q_i^g)$
+    $$L_{pglr} = - \sum_{i=1}^N \overline{y_i^g} . log(q_i^g)$$
+
+    ```python
+    class PGLR(nn.Module):
+    """ Part-guided label refinement """
+    def __init__(self, lam=0.5):
+        super(PGLR, self).__init__()
+        self.softmax = nn.Softmax(dim=1)
+        self.logsoftmax = nn.LogSoftmax(dim=1)
+        self.lam = lam
+
+    def forward(self, logits_g, logits_p, targets, ca):
+        targets = torch.zeros_like(logits_g).scatter_(1, targets.unsqueeze(1), 1)
+        w = torch.softmax(ca, dim=1)  # B * P
+        w = torch.unsqueeze(w, 1)  # B * 1 * P
+        preds_p = self.softmax(logits_p)  # B * C * P
+        ensembled_preds = (preds_p * w).sum(2).detach()  # B * class_num
+        refined_targets = self.lam * targets + (1-self.lam) * ensembled_preds
+
+        log_preds_g = self.logsoftmax(logits_g)
+        loss = (-refined_targets * log_preds_g).sum(1).mean()
+        return loss
+    ```
+    
 
 - **Overall training objective.** 
   $$L_{PPLR} = L_{aals} + L_{pglr} + L_{softTriplet} + \lambda L_{cam}$$
 
   If $\lambda=0$, training process will exclude camera loss.
+
+
 
 ## 3. Ablation Study
   
@@ -137,5 +165,5 @@ Based on the cross agreement scores, we alleviate the pseudo label noise by cons
 
   - Large k values result in more frequent false matches in top-k ranked lists of global and part features, producing lower cross agreement scores overall.
   - When we set β to 0, our method decomposes down to using only the ensembled part predictions showing the significant performance drop
-  - Based on these experimental results, we set _k = 20_ and _$\beta = 0.5$_
+  - Based on these experimental results, we set _k = 20_ and $\beta = 0.5$
 
