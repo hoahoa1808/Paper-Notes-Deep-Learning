@@ -51,16 +51,16 @@ There are 2 stages:
   - local(part) cross entropy: $L_{pce} = - \frac{1}{N_p} \sum_{i=1}^N \sum_{n=1}^{N_p} y_i . log(q_i^{p_n})$
     where $q_i^{p_n} = h_{\phi_g}(f_i^{p_n}) \in R^K$ is the prediction vector by _n_-th part feature space $p_n$, and _h_ is the classifier for the part feature space. 
   - softmax-triplet loss:
-  $$L_{softTriplet =  - \sum_{i=1}^{N} log (\frac{e^{||f_i^g - f_{i,n}^g||}}{e^{||f_i^g - f_{i,p}^g||} + e^{||f_i^g - f_{i,n}^g||}})$$
-  where ||.|| denotes the L2-norm, the subcripts _(i,p)_ and _(i,n)_ respectively the hardest positive and negative samples of the image $x_i$ in mini-batch.
+  $$L_{softTriplet} =  - \sum_{i=1}^N log (\frac{e^{|f_i^g - f_{i,n}^g|}}{e^{|f_i^g - f_{i,p}^g|} + e^{|f_i^g - f_{i,n}^g|}})$$
+  where |.| denotes the L2-norm, the subcripts _(i,p)_ and _(i,n)_ respectively the hardest positive and negative samples of the image $x_i$ in mini-batch.
   - *Optional loss*: camera-aware proxy to improve the discriminability across camera views. This loss attemp _pull_ together the proxies are within the same cluster but in different cameras, _reduce_ the intra-class variance caused by disjoint camera views.
     - compute the camrera-aware proxy $c_{a,b}$ as the cenntroid of the features that have _same camera label_ **a** and _same cluter(plabel)_ **b**
 
     $$c_{(a,b)} = \frac{1}{|S_{a,b}|} \sum_{i \in S_{a,b}} f_i$$
-    where $S_{a,b} = {i|c_i = a \cat y_i = b}$ is the index set for the proxy $c_{(a,b)}$
+    where $S_{a,b} = {i|c_i = a \cap y_i = b}$ is the index set for the proxy $c_{(a,b)}$
 
     - with $P_i, Q_i$ are the index sets of the positive and hard negative camera-aware proxies for $f_i^g$, the inter-camera contrastive loss as:
-    $$L_{cam} = - \sum_{i=1}^N \frac{1}{|P_i|} \sum_{j \in P_i} log \frac{exp(c_j^{\tau} f_i^g / \tau)}{\sum_{k \in P_i \cup Q_i} exp(c_k^{\tau} f_^g / \tau)}$$ 
+    $$L_{cam} = - \sum_{i=1}^N \frac{1}{|P_i|} \sum_{j \in P_i} log \frac{exp(\frac{c_j^{\tau} f_i^g }{\tau})}{\sum_{k \in P_i \cup Q_i} exp (\frac{c_k^{\tau} f_i^g}{\tau})}$$ 
 
       - $P_i$ defined as the proxy indices that have the same pseudo-label but differnet camera labels with $f_i$
       - $Q_i$ for the hard negative proxies of the feature $f_i$ is defined as the indices of nearest proxies that have different pseudo-labels to $y_i$
@@ -166,4 +166,3 @@ Based on the cross agreement scores, we alleviate the pseudo label noise by cons
   - Large k values result in more frequent false matches in top-k ranked lists of global and part features, producing lower cross agreement scores overall.
   - When we set β to 0, our method decomposes down to using only the ensembled part predictions showing the significant performance drop
   - Based on these experimental results, we set _k = 20_ and $\beta = 0.5$
-
