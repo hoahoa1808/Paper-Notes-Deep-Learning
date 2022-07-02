@@ -31,25 +31,24 @@ is the non-linear mapping per-channel transformation  which is a composition of 
 - the downsampling steps are consecutively applied in the very beginning stage of the feature embedding process to avoid large spatial dimension of the feature maps.
 - in the later stage, more feature maps are added to support the information flow of the whole network
 
+
+# 2.MobiFace Analysis
 **Architecture**
 > Model Architecture for facial feature embedding. /2
 means the operator has stride of 2. “Block” and “RBlock” indicate the Bottleneck Block and Residual Bottleneck block, respectively.
 
-    INPUT   |  OPERATOR   
-------------| -----------
-   112x11x3 | 3x3 Conv, /2, 64
-    56x56x64| 3x3 DWconv, 64
-    56x56x64| Block 1 x {(1x1 Conv, 128) - (3x3 DWconv, 2, 128) - (1 × 1 Conv, Linear, 64)}
-    28x28x64| RBlock 2 x {(1x1 Conv, 128) - (3x3 DWconv, 2, 128) - (1 × 1 Conv, Linear, 64)}
-    28x28x64| Block 1 x {(1x1 Conv, 256) - (3x3 DWconv, 2, 256) - (1 × 1 Conv, Linear, 128)}
-   14x14x128| RBlock 3 x {(1x1 Conv, 256) - (3x3 DWconv, 2, 256) - (1 × 1 Conv, Linear, 128)}
-   14x14x128| Block 1 x {(1x1 Conv, 512) - (3x3 DWconv, 2, 512) - (1 × 1 Conv, Linear, 256)}
-    7x7x256 | RBlock 6 x {(1x1 Conv, 512) - (3x3 DWconv, 2, 512) - (1 × 1 Conv, Linear, 256)}
-    7x7x256 | 1x1 Conv, 512
-    7x7x512 | 512-d FC
-
-
-# 2.MobiFace Analysis
+|    INPUT   |  OPERATOR   |
+|------------| ----------- |
+|   112x11x3 | 3x3 Conv, /2, 64|
+|    56x56x64| 3x3 DWconv, 64  |
+|    56x56x64| Block 1 x {(1x1 Conv, 128) - (3x3 DWconv, 2, 128) - (1 × 1 Conv, Linear, 64)} |
+|    28x28x64| RBlock 2 x {(1x1 Conv, 128) - (3x3 DWconv, 2, 128) - (1 × 1 Conv, Linear, 64)} |
+|    28x28x64| Block 1 x {(1x1 Conv, 256) - (3x3 DWconv, 2, 256) - (1 × 1 Conv, Linear, 128)} |
+|   14x14x128| RBlock 3 x {(1x1 Conv, 256) - (3x3 DWconv, 2, 256) - (1 × 1 Conv, Linear, 128)}|
+|   14x14x128| Block 1 x {(1x1 Conv, 512) - (3x3 DWconv, 2, 512) - (1 × 1 Conv, Linear, 256)} |
+|    7x7x256 | RBlock 6 x {(1x1 Conv, 512) - (3x3 DWconv, 2, 512) - (1 × 1 Conv, Linear, 256)}|
+|    7x7x256 | 1x1 Conv, 512 |
+|    7x7x512 | 512-d FC     |
 - Given an input facial image with the size of 112 × 112 × 3, this light-weight network aims at maximizing the information embedded in final feature vector while maintaining the low computational cost.
 - The structures of Residual Bottleneck blocks and Bottleneck blocks are very similar except a shortcut is added to connect the input and the output of the 1×1 convolution layer 
 - the stride s is set to 2 in Bottleneck blocks while that parameter is set to 1 in every layers of Residual Bottleneck blocks.
