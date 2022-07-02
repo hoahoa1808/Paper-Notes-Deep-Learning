@@ -8,13 +8,13 @@
 
 1. SOTA
    - <kbd>2022 - 05 Apr</kbd><kbd>CVPR 2022</kbd> [HeadSharingKD: It's All in the Head: Representation Knowledge Distillation through Classifier Sharing](2.Face%20Recogntion/SOTA/HeadSharingKD.md)
-   - <kbd>2022 - 03 Apr</kbd><kdb>CVPR 2022</kbd> [AdaFace: Quality Adaptive Margin for Face Recognition](2.Face%20Recogntion/SOTA/AdaFace.md)
+   - <kbd>2022 - 03 Apr</kbd><kbd>CVPR 2022</kbd> [AdaFace: Quality Adaptive Margin for Face Recognition](2.Face%20Recogntion/SOTA/AdaFace.md)
    - <kbd>2021 - 13 Nov</kbd><kbd>CVPR 2021</kbd> [MagFace: A Universal Representation for Face Recognition and Quality Assessment](2.Face%20Recogntion/SOTA/MagFace.md)
    - <kbd>2019 - 09 Feb</kbd><kbd>CVPR 2019</kbd> [ArcFace: Additive Angular Margin Loss for Deep Face Recognition](2.Face%20Recogntion/SOTA/ArcFace.md)
    - <kbd>2018 - 03 Apr</kbd><kbd>CVPR 2018</kbd> [CosFace: Large Margin Cosine Loss for Deep Face Recognition](2.Face%20Recogntion/SOTA/CosFace.md)
   
 2. Architectures
-   - <kdb>2019 - 17 Apr</kbd><kbd>CVPR</kbd> [MobiFace: A Lightweight Deep Learning Face Recognition on Mobile Devices](2.Face%20Recogntion/Architectures/Mobiface.md)
+   - <kbd>2019 - 17 Apr</kbd><kbd>CVPR</kbd> [MobiFace: A Lightweight Deep Learning Face Recognition on Mobile Devices](2.Face%20Recogntion/Architectures/Mobiface.md)
 
 ## Person ReID
 
