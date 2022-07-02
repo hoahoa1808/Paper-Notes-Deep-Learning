@@ -8,6 +8,7 @@ This list of papers provide a good introduction to deep learning in computer vis
 - ResNet (Residual Network) https://arxiv.org/abs/1512.03385
 - DenseNet https://arxiv.org/abs/1608.06993
 - Dual Path Network https://arxiv.org/abs/1707.01629
+- MobileNetV3 https://arxiv.org/abs/1905.02244
 
 ## Object detection
 - Overview article https://blog.athelas.com/a-brief-history-of-cnns-in-image-segmentation-from-r-cnn-to-mask-r-cnn-34ea83205de4
