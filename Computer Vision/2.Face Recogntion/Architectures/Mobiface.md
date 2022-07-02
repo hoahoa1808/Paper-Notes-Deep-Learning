@@ -14,8 +14,11 @@ Chi Nhan Duong, Kha Gia Quach, Ibsa Jalata, Ngan Le, Khoa Luu. _17 Apr 2019 (v2)
 # 1. Network Design Strategy
 **Bottleneck Residual block with the expansion layers.**
 a block consists of three main transformation operators, i.e. two linear transformations and one non-linear:
-$$\mathcal{B}(\mathbf{x})=\left[\mathcal{F}_{1} \circ \mathcal{F}_{2} \circ \mathcal{F}_{3}\right](\mathbf{x})$$
+
+$$\mathcal{B}(\mathbf{x})= (\mathcal{F}_{1} \circ \mathcal{F}_{2} \circ \mathcal{F}_{3})(\mathbf{x})$$
+
 where 
+
 $$\mathcal{F}_{1}: \mathbb{R}^{w \times h \times k} \mapsto \mathbb{R}^{w \times h \times t k}$$
 
 $$\mathcal{F}_{3}: \mathbb{R}^{w \times h \times k} \mapsto$ $\mathbb{R}^{\frac{w}{s}} \times \frac{h}{s} \times k_{1}$$
