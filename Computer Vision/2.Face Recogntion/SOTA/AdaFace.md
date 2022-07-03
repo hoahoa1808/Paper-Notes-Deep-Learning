@@ -45,7 +45,11 @@ $$N (t, \cos \theta_{j} )= \begin{cases}\cos  (\theta_{j} ) & s \cos  (\theta_{y
   
 $$\mathcal{L}_{C E} (\boldsymbol{x}_{i} )=-\log \frac{\exp  (\boldsymbol{W}_{y_{i}} \boldsymbol{z}_{i}+b_{y_{i}} )}{\sum_{j=1}^{C} \exp  (\boldsymbol{W}_{j} \boldsymbol{z}_{j}+b_{j} )}$$
 
-where $\boldsymbol{z}_{i} \in \mathbb{R}^{d}$ is the $\boldsymbol{x}_{i}$ 's feature embedding, and $\boldsymbol{x}_{i}$ belongs to the $y_{i}$ th class. $\boldsymbol{W}_{j}$ refers to the $j$ th column of the last FC layer weight matrix, $\boldsymbol{W} \in \mathbb{R}^{d \times C}$, and $b_{j}$ refers to the corresponding bias term. $C$ refers to the number of classes.
+where 
+  -  $z_{i} \in R^{d}$ is the  _i_-th input x's feature embedding, 
+  -  $\boldsymbol{W}_{j}$ refers to the $j$ th column of the last FC layer weight matrix, 
+  -  $\boldsymbol{W} \in \mathbb{R}^{d \times C}$, and $b_{j}$ refers to the corresponding bias term. 
+  -  $C$ refers to the number of classes.
 
 ## 2.1 Margin Form and the Gradient
 - Previous works on margin based softmax focused on how the margin shifts the decision boundaries and what their geometric interpretations
@@ -79,27 +83,35 @@ and the image quality
 ![fig2](../../../asset/images/Adaface/fig2.jpg)
 ## 2.3 AdaFace: Adaptive Margin based on Norm
 **Image Quality Indicator.**
-- As the feature norm, $\|z_{i}\|$ is a model dependent quantity, we normalize it using batch statistics $\mu_{z}$ and $\sigma_{z}$:
+- As the feature norm, $\|z_{i}\|$ is a model dependent quantity, 
+- we normalize it using batch statistics $\mu_{z} ; \sigma_{z}$:
 
-$$\widehat{ \|\boldsymbol{z}_{i} \|}= \lfloor .\frac{ \|\boldsymbol{z}_{i} \|-\mu_{z}}{\sigma_{z} / h} |_{-1} ^{1}, .$$
+$$\widehat{\|z_{i} \|}= \lfloor .\frac{ \|\boldsymbol{z}_{i} \|-\mu_{z}}{\sigma_{z} / h} |_{-1} ^{1}, .$$
 
-where $\mu_{z}$ and $\sigma_{z}$ are the mean and standard deviation of all $\|\boldsymbol{z}_{i}\|$ within a batch, then to clipping the value between -1 and 1 and stopping the gradient from flowing.
-- If the batch size is small, the batch statistics $\mu_{z}$ and $\sigma_{z}$ can be unstable. Thus we use the exponential moving average (EMA) of $\mu_{z}$ and $\sigma_{z}$ across multiple steps to stabilize the batch statistics. Specifically, let $\mu^{(k)}$ and $\sigma^{(k)}$ be the $k$-th step batch statistics of $ \|\boldsymbol{z}_{i} \|$. Then
+where $\mu_{z}$ and $\sigma_{z}$ are the mean and standard deviation of all 
+$\|\boldsymbol{z}_{i}\|$ within a batch, then to clipping the value between -1 and 1 and stopping the gradient from flowing.
+
+- If the batch size is small, the batch statistics $\mu_{z};\sigma_{z}$ can be unstable. 
+Thus we use the exponential moving average (EMA) of $\mu_{z}; \sigma_{z}$ across multiple steps to stabilize the batch statistics. Specifically in the _k_-th step batch statistics.:
   
 $$\mu_{z}=\alpha \mu_{z}^{(k)}+(1-\alpha) \mu_{z}^{(k-1)}$$
 
-and $\alpha$ is a momentum set to $0.99$. The same is true for $\sigma_{z}$.
+where
+    -  $\alpha$ is a momentum set to 0.99. 
+    -  $\sigma_{z}$ set to 0.99, 
 
 **Adaptive Margin Function.**
 > a margin function such that 1) if image quality is high, we emphasize hard samples, and 2) if image quality is low, we de-emphasize hard samples. 
 
-$$f (\theta_{j}, m )_{\text {AdaFace }}= \begin{cases}s \cos  (\theta_{j}+g_{\text {angle }} )-g_{\text {add }} & j=y_{i} \\ s \cos \theta_{j} & j \neq y_{i}\end{cases}$$
+$$f (\theta_{j}, m )_{AdaFace}= \begin{cases}s \cos  (\theta_{j}+g_{\text {angle }} )-g_{\text {add }} & j=y_{i} \\ s \cos \theta_{j} & j \neq y_{i}\end{cases}$$
 
-- $g_{\text {angle }}$ and $g_{\text {add }}$ are the functions of $\widehat{ \|\boldsymbol{z}_{i} \|}$. We define: 
+with: 
   
-$$g_{\text {angle }}=-m \cdot \widehat{ \|\boldsymbol{z}_{i} \|}, \quad g_{\text {add }}=m \cdot \widehat{ \|\boldsymbol{z}_{i} \|}+m$$
+$$g_{\text {angle }}=-m \cdot \widehat{ \|\boldsymbol{z}_{i} \|}, \quad g_{add} = m \cdot \widehat{ \|\boldsymbol{z}_{i} \|}+m$$
 
-- Note that when $\widehat{ \|\boldsymbol{z}_{i} \|}=-1$, the proposed function becomes ArcFace. When $\widehat{ \|\boldsymbol{z}_{i} \|}=0$, it becomes CosFace. 
+- Note that:
+    -   when $\widehat{ \|z_{i} \|}=-1$, the proposed function becomes ArcFace. 
+    -   When $\widehat{ \|\boldsymbol{z}_{i} \|}=0$, it becomes CosFace. 
   
 - When $\widehat{ \|\boldsymbol{z}_{i} \|}=1$, it becomes a negative angular margin with a shift. Fig. 3 shows the effect of the adaptive function on the gradient. The high norm features will receive a higher gradient scale, far away from the decision boundary, whereas the low norm features will receive higher gradient scale near the decision boundary. For low norm features, the harder samples away from the boundary are de-emphasized.
 
