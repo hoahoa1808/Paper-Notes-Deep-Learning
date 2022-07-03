@@ -15,27 +15,30 @@ Re-Ranking Person Re-Identification With k-Reciprocal Encoding. _09 November 201
 6. Complexity Analysis
 
 # 1. Problem Definition
-- Given a probe person $p$ and the gallery set  $\mathcal{G}=\left\{g_{i} \mid i=1,2, \ldots N\right\}$, 
+- Given a probe person $p$ and the gallery set \ 
+$\mathcal{G}=\{g_{i} \mid i=1,2, \ldots N \}$, 
 the original distance between two persons $p$ and $g_{i}$ can be measured by Mahalanobis distance,
 
 $$d\left(p, g_{i}\right)=\left(x_{p}-x_{g_{i}}\right)^{\top} \mathbf{M}\left(x_{p}-x_{g_{i}}\right)$$
 
 where $x_{p}, x_{g_{i}}$ are probe _p_ and gallery _ith-g_, and __M__ is a positive semidefinite matrix.
 
-- The initial ranking list $\mathcal{L}(p, \mathcal{G})=\left\{g_{1}^{0}, g_{2}^{0}, \ldots g_{N}^{0}\right\}$ can be obtained according to the pairwise original distance between probe $p$ and gallery $g_{i}$, 
-where $d\left(p, g_{i}^{0}\right)<d\left(p, g_{i+1}^{0}\right)$. 
+- The initial ranking list $\mathcal{L}(p, \mathcal{G})=\{g_{1}^{0}, g_{2}^{0}, \ldots g_{N}^{0}\}$ can be obtained according to the pairwise original distance between probe $p$ and gallery $g_{i}$, 
+where $\mathcal{d} (p, g_{i}^{0}) < \mathcal{d}(p, g_{i+1}^{0})$. 
 
 > Our goal is to re-rank $\mathcal{L}(p, \mathcal{G})$, so that more positive samples rank top in the list, and thus to improve the performance of person re-identification (re-ID).
 
 # 2. K-reciprocal Nearest Neighbors
 - Define $N(p, k)$ as the _k_-nearest neighbors of _p_
-$$ N(p, k)=\left\{g_{1}^{0}, g_{2}^{0}, \ldots, g_{k}^{0}\right\},|N(p, k)|=k $$
+$$ N(p, k) = \{g_{1}^{0}, g_{2}^{0}, \ldots, g_{k}^{0} \},|N(p, k)|=k $$
 where |.| is the number of candidates in the set
 
 - The _k_-reciprocal nearest neighbors $\mathcal{R}(p,k)$ can be defined as the _k_-reciprocal nearest neighbors are more related to probe _p_ than _k_-nearest neighbors:
-$$ \mathcal{R}(p, k)=\left\{g_{i} \mid\left(g_{i} \in N(p, k)\right) \wedge\left(p \in N\left(g_{i}, k\right)\right)\right\} $$
+$$ \mathcal{R}(p, k)= \{g_{i} \mid (g_{i} \in N(p, k) ) \wedge (p \in N (g_{i}, k))\} $$
 
-- However, due to variations in illuminations, poses, views and occlusions, the positive images may be excluded from the _k_-nearest neighbors. To address this problem, we incrementally add the $\frac{1}{2}$ _k_-reciprocal nearest neighbors of each candidate in $\mathcal{R}(p, k)$ into a more robust set $\mathcal{R}^{*}(p, k)$ according to the following condition:
+- However, due to variations in illuminations, poses, views and occlusions, the positive images may be excluded from the _k_-nearest neighbors. To address this problem, we incrementally add the $\frac{1}{2}$ _k_-reciprocal nearest neighbors of each candidate in $\mathcal{R}(p, k)$ into a more robust set  
+$\mathcal{R}^{*}(p, k)$ according to the following condition:
+
 $$\mathcal{R}^{*}(p, k) \leftarrow \mathcal{R}(p, k) \cup \mathcal{R}\left(q, \frac{1}{2} k\right)$$
 
 $$ \text { s.t. }\left|\mathcal{R}(p, k) \cap \mathcal{R}\left(q, \frac{1}{2} k\right)\right| \geqslant \frac{2}{3}\left|\mathcal{R}\left(q, \frac{1}{2} k\right)\right| $$
@@ -44,25 +47,30 @@ $$\forall q \in \mathcal{R}(p, k)$$
 
 # 3. Jaccard Distance
 - The new distance between _p_ and $g_i$ can be calculated by the Jaccard metric of their _k_-reciprocal sets as E.q 5:
-$$d_{J}\left(p, g_{i}\right)=1-\frac{\left|\mathcal{R}^{*}(p, k) \cap \mathcal{R}^{*}\left(g_{i}, k\right)\right|}{\left|\mathcal{R}^{*}(p, k) \cup \mathcal{R}^{*}\left(g_{i}, k\right)\right|}$$
-where |.| denote the number of candidates in the set.
+
+$$d_{J}(p, g_{i}) = 1-\frac{\left|\mathcal{R}^{*}(p, k) \cap \mathcal{R}^{*} g_{i}, k\right)|}{|\mathcal{R}^{*}(p, k) \cup \mathcal{R}^{*}(g_{i}, k)|}$$
+
+  where |.| denote the number of candidates in the set.
 - by encoding the _k_-reciprocal nearest neighbor set into a vector $V_p = [V_{p,g_1},...,V_{p, g_N}]$ as Eq.6:
   
 $$\mathcal{V}_{p, g_{i}}= \begin{cases}1 & \text { if } g_{i} \in \mathcal{R}^{*}(p, k) \\ 0 & \text { otherwise }\end{cases}$$
 
-then, the k-reciprocal neighbor set can be represented as an N-dimensional vector
+  then, the k-reciprocal neighbor set can be represented as an N-dimensional vector
 
 -  we redefine Eq. 6 by the Gaussian kernel of the pairwise distance as
-$$\mathcal{V}_{p, g_{i}}= \begin{cases}\mathrm{e}^{-d\left(p, g_{i}\right)} & \text { if } g_{i} \in \mathcal{R}^{*}(p, k) \\ 0 & \text { otherwise. }\end{cases}$$
+
+$$\mathcal{V}_{p, g_{i}} = \begin{cases}\mathrm{e}^{-d(p, g_{i})} & \text { if } g_{i} \in \mathcal{R}^{*}(p, k) \\ 
+ 0 & \text{otherwise.}\end{cases}$$
 
 - Based on the above definition, the number of candidates in the intersection and union set can be calculated as
-$$ \begin{gathered}
-\left|\mathcal{R}^{*}(p, k) \cap \mathcal{R}^{*}\left(g_{i}, k\right)\right|=\left\|\min \left(\mathcal{V}_{p}, \mathcal{V}_{g_{i}}\right)\right\|_{1} \\
-\left|\mathcal{R}^{*}(p, k) \cup \mathcal{R}^{*}\left(g_{i}, k\right)\right|=\left\|\max \left(\mathcal{V}_{p}, \mathcal{V}_{g_{i}}\right)\right\|_{1}
-\end{gathered} $$
+
+$$ |\mathcal{R}^{*}(p, k) \cap \mathcal{R}^{*}(g_{i}, k)| = \|\min (\mathcal{V}_{p}, \mathcal{V}_{g_{i}})\|_{1} $$
+
+$$ |\mathcal{R}^{*}(p, k) \cup \mathcal{R}^{*}(g_{i}, k)| = \|\max (\mathcal{V}_{p}, \mathcal{V}_{g_{i}})\|_{1} $$
 
 - The Jaccard distance in Eq. 5 can rewrite as
-$$ d_{J}\left(p, g_{i}\right)=1-\frac{\sum_{j=1}^{N} \min \left(\mathcal{V}_{p, g_{j}}, \mathcal{V}_{g_{i}, g_{j}}\right)}{\sum_{j=1}^{N} \max \left(\mathcal{V}_{p, g_{j}}, \mathcal{V}_{g_{i}, g_{j}}\right)} $$
+
+$$ d_{J}(p, g_{i}) = 1 -\frac{\sum_{j=1}^{N} \min (\mathcal{V}_{p, g_{j}}, \mathcal{V}_{g_{i}, g_{j}})}{\sum_{j=1}^{N} \max (\mathcal{V}_{p, g_{j}}, \mathcal{V}_{g_{i}, g_{j}})} $$
 
 
 # 4. Local Query Expansion
