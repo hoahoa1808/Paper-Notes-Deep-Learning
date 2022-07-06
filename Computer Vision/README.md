@@ -24,7 +24,7 @@
    - <kbd>2022 - 19 May</kbd><kbd>ICPR 2022</kbd> [Learning Feature Fusion for Unsupervised Domain Adaptive Person Re-identification](3.Person%20ReID/LF2.md) ($LF^2$)
    - <kbd>2022 - 28 Apr</kbd><kbd>AAAI 2022</kbd> [Delving into Probabilistic Uncertainty for Unsupervised Domain Adaptive Person Re-identification](3.Person%20ReID/P2LR.md) ($P^{2}LR$)
    - <kbd>2022 - 28 Mar</kbd><kbd>CVPR 2022</kbd> [Part-based Pseudo Label Refinement for Unsupervised Person Re-identification](3.Person%20ReID/PPLR.md) ($PPLR$)
-   - <kbd>2021 - 29 Sep</kbd><kbd>CVPR 2021</kbd> [Hybrid Dynamic Contrast and Probability Distillation for Unsupervised Person Re-Id](3.Person%20ReID/HDCPD.md)
+   - <kbd>2021 - 29 Sep</kbd><kbd>CVPR 2021</kbd> [Hybrid Dynamic Contrast and Probability Distillation for Unsupervised Person Re-Id](3.Person%20ReID/HDCPD.md) ($HDCPD$)
   
 3. Others ralated techniques
    - <kbd>2017 - 09 Nov</kbd><kbd>CVPR 2017</kbd> [Re-Ranking Person Re-Identification With k-Reciprocal Encoding](3.Person%20ReID/ReRankwKRE.md)
