@@ -87,6 +87,7 @@ $$\mathcal{L}_{LBatch} = -\log \frac{\exp <\mathbf{q}_{i}, \mathbf{q}_{i}^{+}>/ 
 
 
 -  The hybrid local-toglobal contrastive loss with hardest data mining strategy $L_{L2G}$ : 
+
    $$\mathcal{L}_{L2G} = \mathcal{L}_{GMemory} + \mathcal{L}_{LBatch} $$
 
 ## The memory bank and Its updating strateg
@@ -127,7 +128,7 @@ $$\mathcal{L}_{\mathrm{S}}=\left\|\mathbf{P}^{s}\left(\mathbf{x}_{i}\right)-\mat
 ##  The Final Objective Function
 the final objective function consists of the pseudo label based localto-global contrastive loss and the self-supervised probability
 
-$$\mathcal{L}_{total} = \mathcal{L}_{L2G} + \gamma \mathcal{L}_S$$
+$$\mathcal{L}_{total} = \mathcal{L}_{(L2G)} + \gamma \mathcal{L}_S$$
 
 # Ablation Studies
 
