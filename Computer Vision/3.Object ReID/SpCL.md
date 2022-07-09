@@ -41,7 +41,7 @@ Our training scheme alternates between two steps:
  - grouping the target-domain samples into clusters and un-clustered instances by clustering the target-domain instance features in the hybrid memory with the self-paced strategy [Section 2.2](#22-self-paced-learning-with-reliable-clusters)
  -  optimizing the encoder fθ with a unified contrastive loss and dynamically updating the hybrid memory with encoded features [Section 2.1](#21--constructing-and-updating-hybrid-memory-for-contrastive-learning)
 
-![fig2](../../asset/image/SpCL/fig2.jpg)
+![fig2](../../asset/images/SpCL/fig2.jpg)
 
 ## 2.1 Constructing and Updating Hybrid Memory for Contrastive Learning
 Given:
@@ -50,12 +50,13 @@ Given:
      - the source-domain samples $\mathbb{X}^{s}$ with ground-truth identity labels
      - the target-domain pseudo-labeled data $\mathbb{X}_{c}^{t}$ within clusters 
      - the target-domain instances $\mathbb{X}_{o}^{t}$ not belonging to any cluster
-     - $\mathbb{X}^{t}=\mathbb{X}_{c}^{t} \cup \mathbb{X}_{o}^{t}$. 
+     - $X^t = X_c^t \cup X_o^t$. 
   
    - We design a novel contrastive loss to fully exploit available data by treating all the source-domain classes, target-domain clusters and target-domain un-clustered instances as independent classes.
 
 - **Unified Contrastive Learning**
-Given a general feature vector $\boldsymbol{f}=f_{\theta}(x), x \in \mathbb{X}^{s} \cup \mathbb{X}_{c}^{t} \cup \mathbb{X}_{o}^{t}$, our unified contrastive loss is
+  
+Given a general feature vector $\boldsymbol{f}=f_{\theta}(x), x \in \mathbb{X}^{s} \cup \mathbb{X}_{c}^{t} \cup \mathbb{X}_{o}^{t}$ , our unified contrastive loss is
 
 $$\mathcal{L}_{\boldsymbol{f}}=-\log \frac{\exp \left(\left\langle\boldsymbol{f}, \boldsymbol{z}^{+}\right\rangle / \tau\right)}{\sum_{k=1}^{n^{s}} \exp \left(\left\langle\boldsymbol{f}, \boldsymbol{w}_{k}\right\rangle / \tau\right)+\sum_{k=1}^{n_{c}^{t}} \exp \left(\left\langle\boldsymbol{f}, \boldsymbol{c}_{k}\right\rangle / \tau\right)+\sum_{k=1}^{n_{o}^{t}} \exp \left(\left\langle\boldsymbol{f}, \boldsymbol{v}_{k}\right\rangle / \tau\right)} \quad, \quad (1)$$
 
@@ -70,16 +71,18 @@ $$\mathcal{L}_{\boldsymbol{f}}=-\log \frac{\exp \left(\left\langle\boldsymbol{f}
 
 - **Hybrid Memory**
 
-  -  the cluster number and outlier instance $n_c^t \qquad \text{and} \qquad n_o^t$ may change during training.
+  -  the cluster number and outlier instance $n_c^t  \text{and}  n_o^t$ may change during training.
   -  a novel hybrid memory to provide source class centroids $w_i$, target-domain clusters $c_{i_c^t}$, target-domain un-clustered instance features $v_{i_o^t}$
   -  For continuously storing and updating the above three types of entries, they **cache** :
      -  source-domain class centroids
      -  all the target-domain instance features $v_1, ..., v_n^t \qquad \text{where} \qquad n^t <> n_c^t + n_o^t$ is the number of all the target-domain instances
   
-**Memory initialization**
+- **Memory initialization**
+
 The hybrid memory is initialized with the extracted features by performing forward computation of $f_{\theta}$:
   - source-domain class centroids $\{\boldsymbol{w}\}$ can be obtained as the mean feature vectors of each class
-  - target-domain instance features $\{\boldsymbol{v}\}$ are directly encoded by $f_{\theta}$ After that, the target-domain cluster centroids $\{\boldsymbol{c}\}$ are initialized with the mean feature vectors of each cluster from $\{\boldsymbol{v}\}$
+  - target-domain instance features $\{\boldsymbol{v}\}$ are directly encoded 
+    - After that, the target-domain cluster centroids $\{\boldsymbol{c}\}$ are initialized with the mean feature vectors of each cluster from $\{\boldsymbol{v}\}$
 
 _Example Code_
 ```python
@@ -108,7 +111,8 @@ At each iteration, the encoded feature vectors in each mini-batch would be invol
     - $m^{s} \in[0,1]$ is a momentum coefficient for updating source-domain class centroids. 
     - $m^{s} = 0.2$.
 
-  - For the target-domain cluster centroids, as the hybrid memory caches all the target-domain features $\{\boldsymbol{v}\}$, each encoded feature vector $\boldsymbol{f}_{i}^{t}$ in the mini-batch is utilized to update its corresponding instance entry $\boldsymbol{v}_{i}$ by:
+  - For the target-domain cluster centroids, as the hybrid memory caches all the target-domain features $\{\boldsymbol{v}\}$
+    -  each encoded feature vector $\boldsymbol{f}_{i}^{t}$ in the mini-batch is utilized to update its corresponding instance entry $\boldsymbol{v}_{i}$ by:
   
     $$\boldsymbol{v}_{i} \leftarrow m^{t} \boldsymbol{v}_{i}+\left(1-m^{t}\right) \boldsymbol{f}_{i}^{t}$$
 
@@ -172,9 +176,10 @@ At each iteration, the encoded feature vectors in each mini-batch would be invol
 
 $$\mathcal{R}_{\text {indep }}\left(\boldsymbol{f}_{i}^{t}\right)=\frac{\left|\mathcal{I}\left(\boldsymbol{f}_{i}^{t}\right) \cap \mathcal{I}_{\text {loose }}\left(\boldsymbol{f}_{i}^{t}\right)\right|}{\left|\mathcal{I}\left(\boldsymbol{f}_{i}^{t}\right) \cup \mathcal{I}_{\text {loose }}\left(\boldsymbol{f}_{i}^{t}\right)\right|} \in[0,1]$$
 
-where $\mathcal{I}_{\text {loose }}\left(\boldsymbol{f}_{i}^{t}\right)$ is the cluster set containing $\boldsymbol{f}_{i}^{t}$ when the clustering criterion becomes looser. 
+where $\mathcal{I}_{\text {loose }}\left(\boldsymbol{f}_{i}^{t}\right)$ is the cluster set 
 
-- Larger $\mathcal{R}_{\text {indep }}\left(\boldsymbol{f}_{i}^{t}\right)$ indicates a more independent cluster for $\boldsymbol{f}_{i}^{t}$, i.e., even one looses the clustering criterion, there would be no more sample to be included into the new cluster $\mathcal{I}_{\text {loose }}\left(\boldsymbol{f}_{i}^{t}\right)$. 
+- Larger $\mathcal{R}_{\text {indep }}\left(\boldsymbol{f}_{i}^{t}\right)$ indicates a more independent cluster for _f(i)_, 
+- Even one looses the clustering criterion, there would be no more sample to be included into the new cluster $\mathcal{I}_{\text {loose }}\left(\boldsymbol{f}_{i}^{t}\right)$. 
 - Samples within the same cluster set (e.g., $\mathcal{I}\left(\boldsymbol{f}_{i}^{t}\right)$ ) generally have the same independence score.
 
 **Compactness of clusters.**
@@ -183,9 +188,10 @@ where $\mathcal{I}_{\text {loose }}\left(\boldsymbol{f}_{i}^{t}\right)$ is the c
 
 $$\mathcal{R}_{\text {comp }}\left(\boldsymbol{f}_{i}^{t}\right)=\frac{\left|\mathcal{I}\left(\boldsymbol{f}_{i}^{t}\right) \cap \mathcal{I}_{\text {tight }}\left(\boldsymbol{f}_{i}^{t}\right)\right|}{\left|\mathcal{I}\left(\boldsymbol{f}_{i}^{t}\right) \cup \mathcal{I}_{\text {tight }}\left(\boldsymbol{f}_{i}^{t}\right)\right|} \in[0,1]$$
 
-where $\mathcal{I}_{\text {tight }}\left(\boldsymbol{f}_{i}^{t}\right)$ is the cluster set containing $\boldsymbol{f}_{i}^{t}$ when tightening the criterion.
+where $\mathcal{I}_{\text {tight }}\left(\boldsymbol{f}_{i}^{t}\right)$ is the cluster set 
 
-- Larger $\mathcal{R}_{\text {comp }}\left(\boldsymbol{f}_{i}^{t}\right)$ indicates smaller inter-sample distances around $\boldsymbol{f}_{i}^{t}$ within $\mathcal{I}\left(\boldsymbol{f}_{i}^{t}\right)$, since a cluster with larger intersample distances is more likely to include fewer points when a tightened criterion is adopted.
+- Larger $\mathcal{R}_{\text {comp }}\left(\boldsymbol{f}_{i}^{t}\right)$ indicates smaller inter-sample distances around _f(i)_ 
+within $\mathcal{I}\left(\boldsymbol{f}_{i}^{t}\right)$, since a cluster with larger intersample distances is more likely to include fewer points when a tightened criterion is adopted.
 - The same cluster's data points may have different compactness scores due to the uneven density.
 - we preserve independent clusters with compact data points whose $\mathcal{R}_{\text {indep }}>\alpha$ and $\mathcal{R}_{\text {comp }}>\beta$, while the remaining data are treated as un-clustered outlier instances.
 
