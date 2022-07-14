@@ -55,8 +55,8 @@ $$\sum_{i=1} w_i x_i \qquad \text{where} \qquad x_i = [x_1, x_2, ..., x_D] | \qu
   
 
     - code example:
-  
-    ```python
+ 
+```python
     def forward(self, x):
         return Lambda(lambda z: self.__forward(z))(x)
 
@@ -101,12 +101,13 @@ $$\sum_{i=1} w_i x_i \qquad \text{where} \qquad x_i = [x_1, x_2, ..., x_D] | \qu
             arr = arr.write(value=val, index=i)
 
         return arr
-    ```
+```
 
 # 2. Block Architecture (Basic block)
+
     ![fig4](../../asset/images/Architectures/resnext_fig4.jpg)
 
-    ```python
+```python
     class BasicBlock:
 
         def __init__(self, _in, _out, strides, batch_size, cardinality, weight_decay=5e-4):
@@ -153,7 +154,7 @@ $$\sum_{i=1} w_i x_i \qquad \text{where} \qquad x_i = [x_1, x_2, ..., x_D] | \qu
 
             return self.relu(x)
 
-    ```
+```
 
 # 3. Network Architecture
     
