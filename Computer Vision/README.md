@@ -1,9 +1,5 @@
 # My Review Posts by Topics
 
-## Fundamentation
-   - [This list of papers provide a good introduction to deep learning in computer vision field](1.Start/fundamental_paper.md)
-
-
 ## Face Recognition
 
 1. SOTA

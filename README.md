@@ -3,6 +3,6 @@ Paper notes This repository contains my paper reading notes on deep learning and
 
 # Main interested fields
 this is a categories based on research fields.
-
+0. [Network Architecture](Architectures/readme.md)
 1. [Computer Vision](Computer%20Vision/README.md)
 2. [NLP](NLP/README.md)
