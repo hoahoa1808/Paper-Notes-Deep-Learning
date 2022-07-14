@@ -35,28 +35,28 @@ $$\sum_{i=1} w_i x_i \qquad \text{where} \qquad x_i = [x_1, x_2, ..., x_D] | \qu
    -   **“Network-in-Neuron”**: expands along a new dimension instead of increase dimetion of death normaly as "network-in-network" ideals.
        - generality aggregated transformation :
   
-    $$\mathcal{F}(\mathbf{x})=\sum_{i=1}^{C} \mathcal{T}_{i}(\mathbf{x}) \qquad (2)$$
+   $$\mathcal{F}(\mathbf{x})=\sum_{i=1}^{C} \mathcal{T}_{i}(\mathbf{x}) \qquad (2)$$
 
-    where $\mathcal{T}_{i}(\mathbf{x})$ can be an arbitrary function. 
+   where $\mathcal{T}_{i}(\mathbf{x})$ can be an arbitrary function. 
        -  In Eqn.(2), _C_ is the size of the set of transformations to be aggregated and refer as **cardinality**. the dimension of cardinality controls the number of more complex transformations.
   
-    -  In this paper:
+   -  In this paper:
 
        -  all $mathcal{T}_i$'s have the same topology. 
        -  set the individual transformation $mathcal{T}_i$ to be the bottleneck-shaped architecture as in Fig.1(right)
     -  The residual funtion in Fig. 1 right is:
   
-    $$y = x + \sum_{i=1}^C \mathcal{T}_i(x) \quad \text{ y is output}$$
+   $$y = x + \sum_{i=1}^C \mathcal{T}_i(x) \quad \text{ y is output}$$
 
-    ![fig3](../../asset/images/Architectures/resnext_fig3.jpg)
+   ![fig3](../../asset/images/Architectures/resnext_fig3.jpg)
     -  fig.3(c) is reformulation:
        -  All low-dimensional embeddings (the first 1x1 layers) can be replaced by a sigle, wider layer (1x1, 128-d)
        -  splitting divides its input channels into groups (32g), convolutions are separately performed within each group.
   
 
-    - code example:
+   - code example:
  
-```python
+ ```python
     def forward(self, x):
         return Lambda(lambda z: self.__forward(z))(x)
 
@@ -105,7 +105,7 @@ $$\sum_{i=1} w_i x_i \qquad \text{where} \qquad x_i = [x_1, x_2, ..., x_D] | \qu
 
 # 2. Block Architecture (Basic block)
 
-    ![fig4](../../asset/images/Architectures/resnext_fig4.jpg)
+![fig4](../../asset/images/Architectures/resnext_fig4.jpg)
 
 ```python
     class BasicBlock:
