@@ -79,17 +79,19 @@ A Squeeze-and-Excitation block is a computational unit:
 
 In the notation:
   - take $\mathbf{F}_{t r}$ to be a convolutional operator 
-  - use $\mathbf{V}=\left[\mathbf{v}_{1}, \mathbf{v}_{2}, \ldots, \mathbf{v}_{C}\right]$ to denote the learned set of filter kernels, 
-  where $\mathbf{v}_{c}$ refers to the parameters of the $c$-th filter. 
-  - **the outputs** as $\mathbf{U}=\left[\mathbf{u}_{1}, \mathbf{u}_{2}, \ldots, \mathbf{u}_{C}\right]$, where
+  - use $\mathbf{V}= \text{set} ( v_{1}, v_{2}, \ldots, v_C)$ to denote the learned set of filter kernels, 
+  where $v_c$ refers to the parameters of the _c_-th filter. 
   
-    $$\mathbf{u}_{c}=\mathbf{v}_{c} * \mathbf{X}=\sum_{s=1}^{C^{\prime}} \mathbf{v}_{c}^{s} * \mathbf{x}^{s}$$
+**the outputs** as $\mathbf{U} = [u_1, u_2, \ldots, u_C]$
+where
+  
+$$\mathbf{u}_{c}=\mathbf{v}_{c} * \mathbf{X}=\sum_{s=1}^{C^{\prime}} \mathbf{v}_{c}^{s} * \mathbf{x}^{s}$$
 
   -   Here: 
       -   $*$ denotes convolution
-      -   $\mathbf{v}_{c}=\left[\mathbf{v}_{c}^{1}, \mathbf{v}_{c}^{2}, \ldots, \mathbf{v}_{c}^{C^{\prime}}\right]$
-      -   $\mathbf{X}=$ $\left[\mathbf{x}^{1}, \mathbf{x}^{2}, \ldots, \mathbf{x}^{C^{\prime}}\right]$
-      -   $\mathbf{u}_{c} \in \mathbb{R}^{H \times W} \cdot \mathbf{v}_{c}^{s}$ is a $2 \mathrm{D}$ spatial kernel representing a single channel of $\mathbf{v}_{c}$ that acts on the corresponding channel of $\mathbf{X}$. 
+      -   $v_{c}= [v_c^{1}, \ldots, v_{c}^{C^{\prime}} ]$
+      -   $X = [x^1,  \ldots, x^{C^{\prime}}]$
+      -   $u_{c} \in \mathbb{R}^{H \times W} \cdot v_{c}^{s}$ is a 2D spatial kernel representing a single channel of $v_c$ that acts on the corresponding channel of **X**. 
 
 ![se](../../asset/images/Architectures/SEmodule.jpg)
 
