@@ -48,6 +48,10 @@ code: [github](https://github.com/tensorflow/tensorflow/blob/v2.4.1/tensorflow/p
     =& \frac{1}{N}+\frac{1}{D_{K}^{2}}
     \end{aligned}$$
 
+  - summary:
+
+  ![recap](../../asset/images/Architectures/mobilenet_v1_recap.jpg)
+
 ## 2. Network Structure and Training
 
 > Counting depthwise and pointwise convolutions as separate layers, MobileNet has 28 layers.
