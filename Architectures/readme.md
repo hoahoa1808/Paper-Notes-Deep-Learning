@@ -5,18 +5,20 @@
 
 1. **classification models** 
 
-- <kbd>2021 - 23 Jun</kbd><kbd>ICML 2021</kbd> [EfficientNet v2](CNN/EfficientNetV2.md) <kbd>21.5M(s)|54.1M(m)|118.5M(l) params</kbd>
-- <kbd>2019 - 20 Nov</kbd><kbd>ICCV 2019</kbd> [MobileNet v3](CNN/mobilenetv3.md) <kbd>Lightweight</kbd> <kbd>~2.5(S)|5.5M(L) params</kbd>
-- <kbd>2019 - 29 May</kbd><kbd>CVPR 2019</kbd> [Mnasnet](CNN/MnasNet.md) <kbd>Lightweight</kbd> <kbd>~2.2-6.3M params</kbd>
-- <kbd>2018 - 13 Jan</kbd><kbd>CVPR 2018</kbd> [MobileNet v2](CNN/mobilenetv2.md) <kbd>Lightweight</kbd> <kbd>~3.5M params</kbd>
-- <kbd>2017 - 17 Apr</kbd><kbd>CVPR 2017</kbd> [MobileNet v1](CNN/mobilenet.md)  <kbd>Lightweight</kbd>
-- <kbd>2017 - 11 Apr</kbd><kbd>CVPR 2017</kbd> [ResNext](CNN/resnext.md) <kbd>R50~25M params</kbd>
+- <kbd>2021 - 23 Jun</kbd> [EfficientNet v2](CNN/EfficientNetV2.md) <kbd>ICML 2021</kbd>
+- <kbd>2021 - 03 Jun</kbd> [ViT](CNN/ViT.md) <kbd>CVPR</kbd>  
+- <kbd>2021 - 03 Jan</kbd> [RegNet](CNN/regnet.md) 
+- <kbd>2019 - 20 Nov</kbd> [MobileNet v3](CNN/mobilenetv3.md) <kbd>ICCV 2019</kbd> <kbd>Lightweight</kbd> <kbd>~2.5(S)|5.5M(L) params</kbd>
+- <kbd>2019 - 29 May</kbd> [Mnasnet](CNN/MnasNet.md) <kbd>CVPR 2019</kbd> <kbd>Lightweight</kbd> <kbd>~2.2-6.3M params</kbd>
+- <kbd>2018 - 13 Jan</kbd> [MobileNet v2](CNN/mobilenetv2.md) <kbd>CVPR 2018</kbd> <kbd>Lightweight</kbd> <kbd>~3.5M params</kbd>
+- <kbd>2017 - 17 Apr</kbd> [MobileNet v1](CNN/mobilenet.md) <kbd>CVPR 2017</kbd> <kbd>Lightweight</kbd>
+- <kbd>2017 - 11 Apr</kbd> [ResNext](CNN/resnext.md) <kbd>CVPR 2017</kbd> 
 
-2.  **Detection models**
+1.  **Detection models**
 
 
-3.  **specific models**
+2.  **specific models**
 
-4. Others
+3. Others
 
 - <kbd>2020 - 01 Oct</kbd> Compiling ONNX Neural Network Models Using MLIR
