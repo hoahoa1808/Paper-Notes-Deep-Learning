@@ -16,3 +16,7 @@
 
 
 3.  **specific models**
+
+4. Others
+
+- <kbd>2020 - 01 Oct</kbd> Compiling ONNX Neural Network Models Using MLIR
