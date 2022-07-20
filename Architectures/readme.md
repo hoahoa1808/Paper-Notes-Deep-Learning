@@ -6,7 +6,7 @@
 1. **classification models** 
 
 - <kbd>2021 - 23 Jun</kbd> [EfficientNet v2](CNN/EfficientNetV2.md) <kbd>ICML 2021</kbd>
-- <kbd>2021 - 03 Jun</kbd> [ViT](CNN/ViT.md) <kbd>CVPR</kbd>  
+- <kbd>2021 - 03 Jun</kbd> [ViT](CNN/ViT.md) <kbd> ICLR 2021</kbd>  
 - <kbd>2021 - 03 Jan</kbd> [RegNet](CNN/regnet.md) 
 - <kbd>2019 - 20 Nov</kbd> [MobileNet v3](CNN/mobilenetv3.md) <kbd>ICCV 2019</kbd> <kbd>Lightweight</kbd> <kbd>~2.5(S)|5.5M(L) params</kbd>
 - <kbd>2019 - 29 May</kbd> [Mnasnet](CNN/MnasNet.md) <kbd>CVPR 2019</kbd> <kbd>Lightweight</kbd> <kbd>~2.2-6.3M params</kbd>
