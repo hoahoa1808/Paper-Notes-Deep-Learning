@@ -2,15 +2,18 @@
 
 ## Face Recognition
 
-1. SOTA
-   - <kbd>2022 - 05 Apr</kbd><kbd>CVPR 2022</kbd> [HeadSharingKD: It's All in the Head: Representation Knowledge Distillation through Classifier Sharing](2.Face%20Recogntion/SOTA/HeadSharingKD.md)
-   - <kbd>2022 - 03 Apr</kbd><kbd>CVPR 2022</kbd> [AdaFace: Quality Adaptive Margin for Face Recognition](2.Face%20Recogntion/SOTA/AdaFace.md)
-   - <kbd>2021 - 13 Nov</kbd><kbd>CVPR 2021</kbd> [MagFace: A Universal Representation for Face Recognition and Quality Assessment](2.Face%20Recogntion/SOTA/MagFace.md)
-   - <kbd>2019 - 09 Feb</kbd><kbd>CVPR 2019</kbd> [ArcFace: Additive Angular Margin Loss for Deep Face Recognition](2.Face%20Recogntion/SOTA/ArcFace.md)
-   - <kbd>2018 - 03 Apr</kbd><kbd>CVPR 2018</kbd> [CosFace: Large Margin Cosine Loss for Deep Face Recognition](2.Face%20Recogntion/SOTA/CosFace.md)
+1. Loss functions
+   
+   - <kbd>2022 - 03 Apr</kbd><kbd>CVPR 2022</kbd> [AdaFace](2.Face%20Recogntion/Lossfunctions/AdaFace.md)
+   - <kbd>2021 - 13 Nov</kbd><kbd>CVPR 2021</kbd> [MagFace](2.Face%20Recogntion/Lossfunctions/MagFace.md)
+   - <kbd>2019 - 09 Feb</kbd><kbd>CVPR 2019</kbd> [ArcFace](2.Face%20Recogntion/Lossfunctions/ArcFace.md)
+   - <kbd>2018 - 03 Apr</kbd><kbd>CVPR 2018</kbd> [CosFace](2.Face%20Recogntion/Lossfunctions/CosFace.md)
   
 2. Architectures
-   - <kbd>2019 - 17 Apr</kbd><kbd>CVPR</kbd> [MobiFace: A Lightweight Deep Learning Face Recognition on Mobile Devices](2.Face%20Recogntion/Architectures/Mobiface.md)
+   - <kbd>2022 - 05 Apr</kbd><kbd>CVPR 2022</kbd> [HeadSharingKD](2.Face%20Recogntion/Lossfunctions/HeadSharingKD.md)
+   - <kbd>2019 - 24 Nov</kbd><kbd>ICCVW  2019</kbd> [VarGFaceNet](2.Face%20Recogntion/Architectures/VarGFaceNet.md) <kbd>lightweight</kbd>
+   - <kbd>2019 - 12 Jul</kbd> [VarGFaceNet](2.Face%20Recogntion/Architectures/VarGNet.md)
+   - <kbd>2019 - 17 Apr</kbd><kbd>CVPR</kbd> [MobiFace](2.Face%20Recogntion/Architectures/Mobiface.md) <kbd>lightweight</kbd>
 
 ## Person ReID
 
@@ -28,3 +31,7 @@
 
 ## Object ReID
    - <kbd>2020 - 13 Oct</kbd><kbd>NeurIPS 2022</kbd> [Self-paced Contrastive Learning with Hybrid Memory for Domain Adaptive Object Re-ID](3.Object%20ReID/SpCL.md) ($SpCL$) 
+
+## Image Clustering
+
+   - <kbd>2022- 29 Mar</kbd><kbd>ICLR 2022</kbd> [Ada-NETS](4.Image%20Clustering/AdaNets.md)
