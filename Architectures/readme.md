@@ -9,6 +9,7 @@
 - <kbd>2021 - 03 Jun</kbd> [ViT](CNN/ViT.md) <kbd> ICLR 2021</kbd>  
 - <kbd>2021 - 03 Jan</kbd> [RegNet](CNN/regnet.md) 
 - <kbd>2019 - 20 Nov</kbd> [MobileNet v3](CNN/mobilenetv3.md) <kbd>ICCV 2019</kbd> <kbd>Lightweight</kbd> <kbd>~2.5(S)|5.5M(L) params</kbd>
+- <kbd>2019 - 12 Jul</kbd> [VarGNet](../Computer%20Vision/2.Face%20Recogntion/Architectures/VarGNet.md)</kbd> <kbd>Lightweight</kbd>
 - <kbd>2019 - 29 May</kbd> [Mnasnet](CNN/MnasNet.md) <kbd>CVPR 2019</kbd> <kbd>Lightweight</kbd> <kbd>~2.2-6.3M params</kbd>
 - <kbd>2018 - 13 Jan</kbd> [MobileNet v2](CNN/mobilenetv2.md) <kbd>CVPR 2018</kbd> <kbd>Lightweight</kbd> <kbd>~3.5M params</kbd>
 - <kbd>2017 - 17 Apr</kbd> [MobileNet v1](CNN/mobilenet.md) <kbd>CVPR 2017</kbd> <kbd>Lightweight</kbd>
