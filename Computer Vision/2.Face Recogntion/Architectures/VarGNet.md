@@ -293,7 +293,7 @@ class VarGFaceNet(nn.Module):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
 
-def varGFaceNet(last_channels=1024, emb_size=512, multiplier=1.25, reduction=4, num_stage=3, expansion=2):
+def varGFaceNet(emb_size=512, multiplier=1.25, reduction=4, num_stage=3, expansion=2):
     """
         last_channels: 最后一层的通道数,默认1024
         emb_size: 嵌入特征的大小,默认512
@@ -306,6 +306,7 @@ def varGFaceNet(last_channels=1024, emb_size=512, multiplier=1.25, reduction=4, 
     """
     filter_list=[32, 64, 128, 256]
     norm_block_number=[3, 7, 4]
+    last_channels=1024 if multiplier <= 1 else 1024 * multiplier 
     return VarGFaceNet(last_channels=last_channels, emb_size=emb_size, filter_list=filter_list, norm_block_number=norm_block_number, multiplier=multiplier, reduction=reduction, num_stage=num_stage, expansion=expansion)
 
 
