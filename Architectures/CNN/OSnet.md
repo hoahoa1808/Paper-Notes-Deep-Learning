@@ -59,26 +59,28 @@ for more challenging cases, even features of variable homogeneous scales would n
    - Let $\boldsymbol{x}^{t}$ denote $F^{t}(\boldsymbol{x})$:
      - the omni-scale residual $\tilde{\boldsymbol{x}}$ is obtained by
   
-    $$\tilde{\boldsymbol{x}}=\sum_{t=1}^{T} G\left(\boldsymbol{x}^{t}\right) \odot \boldsymbol{x}^{t}, \quad \text { s.t. } \quad \boldsymbol{x}^{t} \triangleq F^{t}(\boldsymbol{x})$$
+   $$\tilde{\boldsymbol{x}}=\sum_{t=1}^{T} G\left(\boldsymbol{x}^{t}\right) \odot \boldsymbol{x}^{t}, \quad \text { s.t. } \quad \boldsymbol{x}^{t} \triangleq F^{t}(\boldsymbol{x})$$
       
-      - $G\left(\boldsymbol{x}^{t}\right)$ is a vector with length spanning the entire channel dimension of $\boldsymbol{x}^{t}$
-      - $\odot$ denotes the Hadamard product
-      - $G$ is implemented as a mini-network composed of a non-parametric global average pooling layer and a multi-layer perceptron (MLP) with one ReLU-activated hidden layer and a reduction ratio is set to $16 .$ 
-      - the output of the AG network $G\left(\boldsymbol{x}^{t}\right)$ is a vector rather a scalar for the _t_ th stream
+   - where, 
+     -  $G\left(\boldsymbol{x}^{t}\right)$ is a vector with length spanning the entire channel dimension of $\boldsymbol{x}^{t}$
+     - $\odot$ denotes the Hadamard product
+     - $G$ is implemented as a mini-network composed of a non-parametric global average pooling layer and a multi-layer perceptron (MLP) with one ReLU-activated hidden layer and a reduction ratio is set to $16 .$ 
+     - the output of the AG network $G\left(\boldsymbol{x}^{t}\right)$ is a vector rather a scalar for the _t_ th stream
 
 3. Network Architecture
 
-[t1](../../asset/images/Architectures/osnet-t1.jpg)
+![t1](../../asset/images/Architectures/osnet-t1.jpg)
 
 - **Relation to prior architectures**
   - In terms of multistream design, OSNet is related to Inception and ResNeXt
   - First, the multi-stream design in OSNet strictly follows the scale-incremental principle dictated by the exponent (Eq. 2)
-    - Specifically, different streams have different receptive fields but are built with the same Lite 3 × 3 layers (Fig. 4(b))
-    - a design is more effective at capturing a wide range of scales.
-    -  In contrast, Inception was originally designed to have low computational costs by sharing computations with multiple streams which includes mixed operations of convolution and pooling, was handcrafted.
-    -  [ResNeXt](resnext.md) has multiple equal-scale streams thus learning representations at the same scale
-   -  Second, Inception/ResNeXt aggregates features by concatenation/addition while OSNet uses a unified AG (Eq. 3)
-   -  Third, OSNet uses factorised convolutions and thus the building block and subsequently the whole network is lightweight
+    * Specifically, different streams have different receptive fields but are built with the same Lite 3 × 3 layers (Fig. 4(b))
+    * a design is more effective at capturing a wide range of scales.
+    *  In contrast, Inception was originally designed to have low computational costs by sharing computations with multiple streams which includes mixed operations of convolution and pooling, was handcrafted.
+    *  [ResNeXt](resnext.md) has multiple equal-scale streams thus learning representations at the same scale
+    
+  -  Second, Inception/ResNeXt aggregates features by concatenation/addition while OSNet uses a unified AG (Eq. 3)
+  -  Third, OSNet uses factorised convolutions and thus the building block and subsequently the whole network is lightweight
 
 # Experiments
 
