@@ -15,11 +15,14 @@
 - <kbd>2017 - 17 Apr</kbd> [MobileNet v1](CNN/mobilenet.md) <kbd>CVPR 2017</kbd> <kbd>Lightweight</kbd>
 - <kbd>2017 - 11 Apr</kbd> [ResNext](CNN/resnext.md) <kbd>CVPR 2017</kbd> 
 
-1.  **Detection models**
+2.  **Detection models**
 
 
-2.  **specific models**
 
-3. Others
+3.  **specific models**
+
+- <kbd>2019 - 02 May</kbd>[OSNet](CNN/OSnet.md) <kbd>ICCV 2019</kbd> <kbd>Lightweight</kbd> <kbd>~0.2-2.2M params</kbd>
+
+4. Others
 
 - <kbd>2020 - 01 Oct</kbd> Compiling ONNX Neural Network Models Using MLIR

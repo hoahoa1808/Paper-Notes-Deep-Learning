@@ -12,7 +12,6 @@
 2. Architectures
    - <kbd>2022 - 05 Apr</kbd><kbd>CVPR 2022</kbd> [HeadSharingKD](2.Face%20Recogntion/Lossfunctions/HeadSharingKD.md)
    - <kbd>2019 - 24 Nov</kbd><kbd>ICCVW  2019</kbd> [VarGFaceNet](2.Face%20Recogntion/Architectures/VarGFaceNet.md) <kbd>lightweight</kbd>
-   - <kbd>2019 - 12 Jul</kbd> [VarGFaceNet](2.Face%20Recogntion/Architectures/VarGNet.md) <kbd>lightweight</kbd>
    - <kbd>2019 - 17 Apr</kbd><kbd>CVPR</kbd> [MobiFace](2.Face%20Recogntion/Architectures/Mobiface.md) <kbd>lightweight</kbd>
 
 ## Person ReID
