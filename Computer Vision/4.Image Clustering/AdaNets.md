@@ -43,22 +43,27 @@ Yaohua Wang, Yaobin Zhang, Fangyi Zhang, Ming Lin, YuQi Zhang, Senzhang Wang, Xi
    -  the features can encode more texture information by perceiving the data distribution
    -  A transforming function $\varphi$ is deployed to convert one feature $\mathbf{v}_{i}$ into the structure space, noted as:
   
-    $$\mathbf{v}_{i}^{s}=\varphi\left(\mathbf{v}_{i} \mid \mathcal{V}\right), \forall i \in\{1,2, \cdots, N\} \quad \text{(Eq.1)}$$
+    $$\mathbf{v}_{i}^{s}=\varphi \left (\mathbf{v}_{i} \mid \mathcal{V} \right), \forall i \in\{1,2, \cdots, N\} \quad \text{(Eq.1)}$$
 
    - As shown in Figure 2 (I), with the help of the structure space, for one vertex $\mathbf{v}_{i}$, its similarities with other vertices are computed by the following steps:
      *   _kNN_ of $\mathbf{v}_{i}$ are obtained via an Approximate Nearest-neighbour (ANN) algorithm based on the cosine similarity, noted as:
   
-    $$\mathcal{N}\left(\mathbf{v}_{i}, k\right)=\left\{\mathbf{v}_{i_{1}}, \mathbf{v}_{i_{2}}, \cdots, \mathbf{v}_{i_{k}}\right\}$$
+    $$\mathcal{N} (\mathbf{v}_{i}, k) =  \{\mathbf{v}_{i_{1}}, \mathbf{v}_{i_{2}}, \cdots, \mathbf{v}_{i_{k}} \}$$
 
      *   define the similarity of $\mathbf{v}_{i}$ to each of its candidates in the structure space by:
 
     $$\begin{aligned}\kappa\left(\mathbf{v}_{i}, \mathbf{v}_{i_{j}}\right) &=\left\langle\mathbf{v}_{i}^{s}, \mathbf{v}_{i_{j}}^{s}\right\rangle \\ & \triangleq(1-\eta) s^{\mathrm{Jac}}\left(\mathbf{v}_{i}, \mathbf{v}_{i_{j}}\right)+\eta s^{\cos }\left(\mathbf{v}_{i}, \mathbf{v}_{i_{j}}\right), \quad \forall j \in\{1,2, \cdots, k\},\end{aligned}$$
 
     * where:
-        * $\eta$ weights 
-        * the cosine similarity $s^{\cos }\left(\mathbf{v}_{i}, \mathbf{v}_{i_{j}}\right)=\frac{\mathbf{v}_{i} \cdot \mathbf{v}_{i_{j}}}{\left\|\mathbf{v}_{i}\right\|\left\|\mathbf{v}_{i_{j}}\right\|}$
-        * the Jaccard similarity $s^{\mathrm{Jac}}\left(\mathbf{v}_{i}, \mathbf{v}_{i_{j}}\right)$
-        * $\kappa\left(\mathbf{v}_{i}, \mathbf{v}_{i_{j}}\right)$ measures the similarity between two peaks in the structure space.
+     - $\eta$ weights 
+     - the cosine similarity 
+     
+     $$s^{\cos } (\mathbf{v}_{i}, \mathbf{v}_{i_{j}} )=\frac{\mathbf{v}_{i} \cdot \mathbf{v}_{i_{j}}}{\| \mathbf{v}_{i} \| \| \mathbf{v}_{i_{j}} \|}$$
+     
+     - the Jaccard similarity 
+     
+     $$s^{\mathrm{Jac}} \left (\mathbf{v}_{i}, \mathbf{v}_{i_{j}} \right)$$
+     
 
 2. ADAPTIVE NEIGHBOUR DISCOVERY
 
@@ -90,16 +95,15 @@ $$\mathbf{k}^{\text {off }}=\arg \max _{j \in\{1,2, \ldots k\}} Q(j) .$$
 
 As shown in Figure 3, the adaptive filter estimates $\mathbf{k}^{\text {off }}$ by finding the position of the highest $Q$-value on the $Q$-value curve. 
 
-- The input of the adaptive filter is the feature vectors $\left[\mathbf{v}_{i}, \mathbf{v}_{i_{1}}, \mathbf{v}_{i_{2}}, \cdots,, \mathbf{v}_{i_{k}}\right]^{T} \in \mathbb{R}^{(k+1) \times D}$
+- The input of the adaptive filter is the feature vectors:
+
+$$\left[\mathbf{v}_{i}, \mathbf{v}_{i_{1}}, \mathbf{v}_{i_{2}}, \cdots,, \mathbf{v}_{i_{k}}\right]^{T} \in \mathbb{R}^{(k+1) \times D}$$
+ 
 - In training, adaptive filter is trained using the Huber loss:
 
-$$\begin{aligned} \mathcal{L}^{\text {Huber }} &=\frac{1}{B} \sum_{b=1}^{B} \mathcal{L}_{b}^{\text {Huber }}, \\
-\text { where } \mathcal{L}_{b}^{\text {Huber }} &=\left\{\begin{array}{ll}
-\frac{1}{2} \xi^{2}, & \xi<\delta, \\
-\delta \xi-\frac{1}{2} \delta^{2}, & \text { otherwise, }
-\end{array} \quad \xi=\frac{\left|\hat{\mathbf{k}}_{b}^{\text {off }}-\mathbf{k}_{b}^{\text {off }}\right|}{\mathbf{k}_{b}^{\text {off }}},\right. \end{aligned}$$
+$$\begin{aligned} \mathcal{L}^{\text {Huber }} &=\frac{1}{B} \sum_{b=1}^{B} \mathcal{L}_{b}^{\text {Huber }}, \\ \text { where } \mathcal{L}_{b}^{\text {Huber }} &=\left\{\begin{array}{ll} \frac{1}{2} \xi^{2}, & \xi<\delta, \\ \delta \xi-\frac{1}{2} \delta^{2}, & \text { otherwise, } \end{array} \quad \xi=\frac{\left|\hat{\mathbf{k}}_{b}^{\text {off }}-\mathbf{k}_{b}^{\text {off }}\right|}{\mathbf{k}_{b}^{\text {off }}},\right. \end{aligned}$$
 
-  - $\hat{\mathbf{k}}_{b}^{\text {off }}$ is the prediction of $\mathbf{k}_{b}^{\text {off }}$
+  - $\hat{\mathbf{k}}_{b}^{\text {off }}$ is the prediction$
   - $\delta$ is an outlier threshold
   - the candidate neighbours with orders beyond $\hat{\mathbf{k}}^{\text {off }}$ are removed and the left will be treated as neighbours of the corresponding probe
 
@@ -115,7 +119,7 @@ $$\begin{gathered}
 \text { where } \mathcal{L}^{\text {pos }}=\frac{1}{\left\|l_{i}=l_{j}\right\|} \sum_{l_{i}=l_{j}}\left[\beta_{1}-y_{\mathbf{v}_{i}, \mathbf{v}_{j}}\right]_{+}, \quad \mathcal{L}^{n e g}=\max _{l_{i} \neq l_{j}}\left[\beta_{2}+y_{\mathbf{v}_{i}, \mathbf{v}_{j}}\right]_{+},
 \end{gathered}$$
 
-  - $y_{\mathbf{v}_{i}, \mathbf{v}_{j}}$ is the cosine similarity of the GCN output features
+  - $y_{\mathbf{v}_{i}\text{ , }\mathbf{v}_{j}}$ is the cosine similarity of the GCN output features
   - $\left\|l_{i}=l_{j}\right\|$ is the number of the positive pairs
   - $\beta_{1} \text{ and } \beta_{2}$ are the margins of the positive and negative losses
   - $\lambda$ is the weight balancing the two losses
