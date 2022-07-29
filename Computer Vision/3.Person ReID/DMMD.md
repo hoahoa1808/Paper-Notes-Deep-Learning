@@ -48,8 +48,14 @@ $$\mathcal{L}_{supervised} = \mathcal{L}_{ces} + \lambda . \mathcal{L}_{triplet}
 2. **Dissimilarity-based Maximum Mean Discrepancy** (D-MMD)
 
 - Use model $\mathcal{M}$ trained to extract feature representations from:
-  - source image $\mathbf{x}_{s} \in \mathbf{X}_{s}, \phi\left(\mathbf{x}_{s}\right)$
-  - target image $\mathbf{x}_{t} \in \mathbf{X}_{t}, \phi\left(\mathbf{x}_{t}\right)$
+  - source image :
+  
+  $$\mathbf{x}_{s} \in \mathbf{X}_{s}, \phi\left(\mathbf{x}_{s}\right)$$
+  
+  - target image :
+  
+  $$\mathbf{x}_{t} \in \mathbf{X}_{t}, \phi\left(\mathbf{x}_{t}\right)$$
+
 - the within-class distances, e.g., Euclidean or $L_{2}$ distances, between each different pair of images $\mathbf{x}_{i}^{u} \text{ and } \mathbf{x}_{i}^{v}$ of the same class _i_ are computed:
 
     $$d_{i}^{\mathrm{Wc}}\left(\mathbf{x}_{i}^{u}, \mathbf{x}_{i}^{v}\right)=\left\|\phi\left(\mathbf{x}_{i}^{u}\right)-\phi\left(\mathbf{x}_{i}^{v}\right)\right\|_{2}, u \neq v$$
@@ -59,7 +65,7 @@ $$\mathcal{L}_{supervised} = \mathcal{L}_{ces} + \lambda . \mathcal{L}_{triplet}
     - $x_{i}^{u}$ is the image _u_ of the class _i_
 -  the between-class distances are computed using each different pair of images $\mathbf{x}_{i}^{u}\text{ and }\mathbf{x}_{j}^{z}$ of the different class _i_ and _j_:
   
-    $$d_{i, j}^{\mathrm{bc}}\left(\mathbf{x}_{i}^{u}, \mathbf{x}_{j}^{z}\right)=\left\|\phi\left(\mathbf{x}_{i}^{u}\right)-\phi\left(\mathbf{x}_{j}^{z}\right)\right\|_{2}, i \neq j \& u \neq z$$
+    $$d_{i, j}^{\mathrm{bc}}  (\mathbf{x}_i^u, \mathbf{x}_j^z) = \| \phi (\mathbf{x}_i^u )-\phi (\mathbf{x}_j^z) \|_{2}, i \neq j \text{ and } u \neq z$$
 
 - Then, in the dissimilarity space:
   - $\mathbf{d}^{\mathrm{wc}}$  are defined as the distributions of all distance values $d_{i}^{\mathrm{wc}}$  
@@ -95,11 +101,11 @@ $$\mathcal{L}_{M M D}=M M D(\mathcal{S}, \mathcal{T})$$
 - So, Objective :
   - define the $\mathcal{L}_{M M D}^{\mathrm{wc}}$ loss:
 
-        $$\mathcal{L}_{M M D}^{\mathrm{wc}}=M M D\left(\mathbf{d}_{s}^{\mathrm{wc}}, \mathbf{d}_{t}^{\mathrm{wc}}\right)$$
+       $$\mathcal{L}_{M M D}^{\mathrm{wc}}=M M D\left(\mathbf{d}_{s}^{\mathrm{wc}}, \mathbf{d}_{t}^{\mathrm{wc}}\right)$$
 
   - define the $\mathcal{L}_{M M D}^{\mathrm{bc}}$ loss:
 
-        $$\mathcal{L}_{M M D}^{\mathrm{bc}}=M M D\left(\mathbf{d}_{s}^{\mathrm{bc}}, \mathbf{d}_{t}^{\mathrm{bc}}\right)$$
+       $$\mathcal{L}_{M M D}^{\mathrm{bc}}=M M D\left(\mathbf{d}_{s}^{\mathrm{bc}}, \mathbf{d}_{t}^{\mathrm{bc}}\right)$$
 
   - Minimizing the above terms aligns the pair-wise distance distributions of the source and target domains
   - Final unsupervised loss function:
