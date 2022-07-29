@@ -19,9 +19,14 @@ Let:
   - $\mathbf{x}^{s} \in \mathcal{X}^{s}$ be the set of samples from the source domain
   - $y^{s} \in \mathcal{Y}$ be their corresponding labels from the source domain
   - the target domains feature space $\mathcal{X}^{t}$
-  - $\mathbf{x}^{t}=$ $\left\{\mathbf{x}_{1}^{t}, \mathbf{x}_{2}^{t}, \ldots, \mathbf{x}_{T}^{t}\right\} \in \mathcal{X}^{t}$ be the set of samples for **T** unlabeled target domain datasets 
+  - the set of samples for **T** unlabeled target domain datasets :
+  
+  $$\mathbf{x}^{t} = \{\mathbf{x}_{1}^{t}, \mathbf{x}_{2}^{t}, \ldots, \mathbf{x}_{T}^{t} \} \in \mathcal{X}^{t}$$
+  
   - CNN backbone as $\Theta$
-  - each one adapted to each target domain, as $\boldsymbol{\Phi}=\left\{\Phi_{1}, \Phi_{2}, \ldots, \Phi_{T}\right\}$
+  - each one adapted to each target domain, as 
+  
+  $$\boldsymbol{\Phi}= \{\Phi_{1}, \Phi_{2}, \ldots, \Phi_{T}\}$$
 
 As illustrated in Figure 1 (a), a straightforward MTDA method:
   - a straightforward MTDA method
@@ -42,7 +47,9 @@ As illustrated in Figure 1 (a), a straightforward MTDA method:
 
   ![Alg](../../asset/images/P_ReId/MTDA-KD-ReID/algorithm1.jpg)
 
-    - a feature matrix $\mathbf{F}=\left[\dot{f}_{1}, f_{2}, \ldots, f_{N}\right] \in \mathbb{R}^{D \times N}$
+  $$\mathbf{F}=\left[\dot{f}_{1}, f_{2}, \ldots, f_{N}\right] \in \mathbb{R}^{D \times N}$$
+  
+   - above feature matrix, with   
       - $N$ is the batch size
       - $D$ is the dimension of feature vectors
     - self-similarity matrix denoted as $\mathbf{A} \in \mathbb{R}^{N \times N}$ 
@@ -50,7 +57,9 @@ As illustrated in Figure 1 (a), a straightforward MTDA method:
       - $\langle\cdot, \cdot\rangle$ is the cosine distance between the feature vectors
     - Similarity matrices $\mathbf{A}^{s} \text{ and } \mathbf{A}^{t}$ are computed based on student and teacher feature matrices
     - KD loss $\mathcal{L}_{K D}$:
-      - $\mathcal{L}_{K D}=\left\|\mathbf{A}^{s}-\mathbf{A}^{t}\right\|_{F}$
+      
+      $$\mathcal{L}_{K D}=\left\|\mathbf{A}^{s}-\mathbf{A}^{t}\right\|_{F}$$
+      
       - $\|\cdot, \cdot\|_{F}$ is the Frobenius norm matrix
       - It allows tuning $\Theta$ parameters, while $\Phi$ parameters are fixed
     - For each mini-batch $B^{t}$ from a given target domain $i$, we select only the corresponding teacher model $\Phi_{i}$
