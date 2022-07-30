@@ -14,6 +14,12 @@
    - <kbd>2019 - 24 Nov</kbd><kbd>ICCVW  2019</kbd> [VarGFaceNet](2.Face%20Recogntion/Architectures/VarGFaceNet.md) <kbd>lightweight</kbd>
    - <kbd>2019 - 17 Apr</kbd><kbd>CVPR</kbd> [MobiFace](2.Face%20Recogntion/Architectures/Mobiface.md) <kbd>lightweight</kbd>
 
+## Tracking
+
+1. Pedestrian Tracking
+   -  <kbd>2022 - 07 Jul</kbd><kbd>CVPR</kbd> [BoT-SORT](1.Tracking/bot-sort.md)
+   -  <kbd>2017 - 07 Jul</kbd><kbd>ICIP 2016</kbd> [SORT](1.Tracking/simple-sort.md)
+
 ## Person ReID
 
 1. Supervised Learning
@@ -27,7 +33,7 @@
    - <kbd>2020 - 27 Jul</kbd> [Unsupervised Domain Adaptation in the Dissimilarity Space for Person Re-identification](3.Person%20ReID/DMMD.md)
   
 3. Others ralated techniques
-   - <kbd>2022 - 11 Jul</kdb><kbd>ICIP 2022</kbd> [Knowledge Distillation for Multi-Target Domain Adaptation in Real-Time Person Re-Identification](3.Person%20ReID/MTDA-KD-Reid.md) ($MTDA-KD-ReID$)
+   - <kbd>2022 - 11 Jul</kbd><kbd>ICIP 2022</kbd> [Knowledge Distillation for Multi-Target Domain Adaptation in Real-Time Person Re-Identification](3.Person%20ReID/MTDA-KD-Reid.md) ($MTDA-KD-ReID$)
    - <kbd>2017 - 09 Nov</kbd><kbd>CVPR 2017</kbd> [Re-Ranking Person Re-Identification With k-Reciprocal Encoding](3.Person%20ReID/ReRankwKRE.md)
 
 ## Object ReID
